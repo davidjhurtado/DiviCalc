@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DiviCalc.MainPage">
+
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <Label Text="Calculadora en Divisas" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+        <Label Text="Indique monto en divisas:" FontSize="Title" Padding="30,10,30,10"/>
+        <Entry x:Name="entryDivisas" Placeholder="Indique monto a convertir (20)" ></Entry>
+        <Button Text="Convertir" WidthRequest="1" Clicked="Button_Clicked"></Button>
+        <Label></Label>
+        <Label x:Name="lblResulBs"   Padding="30,0,30,0" FontSize="36" FontAttributes="Bold"/>
+        <Label></Label>
+        <StackLayout Orientation="Horizontal" BackgroundColor="AliceBlue" Padding="0,10,0,10" HorizontalOptions="EndAndExpand">
+            <Label Text="Tasa de cambio:" FontSize="Medium" Padding="30,10,30,10"/>
+            <Entry x:Name="entryCambio" Placeholder="Indique monto a convertir (20)" Text="2916071,30" ></Entry>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
