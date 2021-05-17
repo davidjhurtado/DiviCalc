@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace DiviCalc.ViewModel {
-    class BaseViewModel : INotifyPropertyChanged {
+    public class BaseViewModel : INotifyPropertyChanged {
         bool isBusy = false;
         public bool IsBusy {
             get { return isBusy; }
