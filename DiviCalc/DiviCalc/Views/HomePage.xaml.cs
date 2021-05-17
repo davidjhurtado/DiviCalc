@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace DiviCalc {
-    public partial class MainPage : ContentPage {
+namespace DiviCalc.Views {
+    public partial class HomePage : ContentPage {
         private decimal cambio = (decimal)2916071.30;
-        public MainPage() {
+        public HomePage() {
             InitializeComponent();
             entryCambio.Text = cambio.ToString();
         }
