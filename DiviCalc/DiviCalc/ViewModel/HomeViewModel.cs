@@ -17,13 +17,9 @@ namespace DiviCalc.ViewModel {
                 tasaDeCambio = value;
             }
         }
-
-        public string Titulo {
-            get { return "DiviCal - Calculadora de divisas"; }
-            
+        public HomeViewModel() {
+            Title = "DiviCal - Calculadora de divisas";
         }
-
-
-
+        
     }
 }

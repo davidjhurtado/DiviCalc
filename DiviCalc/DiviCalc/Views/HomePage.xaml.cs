@@ -5,12 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using DiviCalc.ViewModel;
 
 namespace DiviCalc.Views {
     public partial class HomePage : ContentPage {
         private decimal cambio = (decimal)2916071.30;
+        private readonly HomeViewModel viewModel;
         public HomePage() {
             InitializeComponent();
+            BindingContext = viewModel = new HomeViewModel();
             entryCambio.Text = cambio.ToString();
         }
 
