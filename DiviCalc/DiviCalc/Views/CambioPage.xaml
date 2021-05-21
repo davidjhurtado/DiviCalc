@@ -11,9 +11,9 @@
             
             <StackLayout Orientation="Horizontal" BackgroundColor="AliceBlue" Padding="0,10,0,10" HorizontalOptions="EndAndExpand">
                 <Label Text="Tasa de cambio:" FontSize="Medium" Padding="30,10,30,10"/>
-                <Entry x:Name="entryCambio" Placeholder="Indique monto a convertir (20)" Text="2916071,30" ></Entry>
+                <Entry x:Name="entryCambio" Placeholder="Indique monto a convertir (20)" Text="{Binding cambio.TasaDeCambio, Mode=Default}" ></Entry>
             </StackLayout>
-            <Button Text="Guardar"></Button>
+            <Button Text="Guardar" Command="{Binding AgregarCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
