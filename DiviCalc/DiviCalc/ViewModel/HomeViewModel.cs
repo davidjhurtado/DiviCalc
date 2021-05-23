@@ -28,8 +28,7 @@ namespace DiviCalc.ViewModel {
         private async Task ObtenerCambioAsync() {
             IsBusy = true;
             await Task.Delay(1000);
-            var _cambios = await CambioService.GetCambiosListAsync();
-            var listaordenada = _cambios.OrderByDescending(p => p.Fecha);
+            IEnumerable<Models.Cambio> _cambios = await CambioService.GetCambiosListAsync();
             TasaDeCambio = _cambios.OrderByDescending(p => p.Fecha).FirstOrDefault().TasaDeCambio.ToString();
             await Task.Delay(1000);
             IsBusy = false;
