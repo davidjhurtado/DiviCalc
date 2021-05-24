@@ -10,47 +10,49 @@ using Xamarin.Forms;
 
 namespace DiviCalc.ViewModel {
     public class CambioViewModel : BaseViewModel {
-        private ObservableCollection<Cambio> Cambios { get; set; }
-        //public ObservableCollection<Cambio> Cambios {
-        //    get { return cambios; }
-        //    set { SetProperty<ObservableCollection<Cambio>>(ref cambios, value); }
-        //}
+        public ObservableCollection<Cambio> Cambios { get; set; }        
         public Command RefreshCommand { get; }
-        public Command BorrarCommand { get; private set; }
+        public Command BorrarCommand { get;  private set; }
         public Command AgregarCommand { get; private set; }
+        private Cambio miCambio;
+        public Cambio MiCambio {
+            get { return miCambio; }
+            set {
+                SetProperty(ref miCambio, value);
+            }
+        }
 
         public CambioViewModel() {
             Title = "DiviCal - Cambios";
             Cambios = new ObservableCollection<Cambio>();
             RefreshCommand = new Command(async ()=> await RecargarAsync()) ;
-            BorrarCommand = new Command(async () => await BorrarAsync(MiCambio));
-            AgregarCommand = new Command(async () => await AgregarAsync(MiCambio));
+            BorrarCommand = new Command(async () => await BorrarAsync(MiCambio.Id));
+            AgregarCommand = new Command<string>(async (string tasaDeCambio) => await AgregarAsync(tasaDeCambio));
 
-            _ = Task.Run(async () => await RecargarAsync());
-            MiCambio = Cambios.Count > 0
-                ? Cambios.OrderByDescending(c => c.Fecha).FirstOrDefault()
-                : new Cambio {
-                    Fecha = DateTime.Today,
-                    TasaDeCambio = (decimal)3073619.30
-                };
-
+        _ = Task.Run(async () => await RecargarAsync());
+            if (Cambios.Count == 0) {
+                MiCambio = new Cambio {
+                    Fecha = new DateTime(2021,05,21,13,00,00),
+                    TasaDeCambio = (decimal)3115347.30
+                    };
+                _ = Task.Run(async () => await AgregarAsync(MiCambio.TasaDeCambio.ToString()));
+                _ = Task.Run(async () => await RecargarAsync());
+            }
+            
+            MiCambio = Cambios.OrderByDescending(c => c.Fecha).FirstOrDefault();
         }
 
-        private Cambio miCambio;
-
-        public Cambio MiCambio {
-            get { return miCambio; }
-            set { SetProperty(ref  miCambio , value); }
-        }
-
-
-        private async Task AgregarAsync(Cambio cambio) {
-            cambio.Fecha = DateTime.Now;
+        private async Task AgregarAsync(string tasaDeCambio) {
+            var cambio = new Cambio {
+                Fecha = DateTime.Now,
+                TasaDeCambio = decimal.Parse(tasaDeCambio)
+            };
             await CambioService.AddCambioAsync(cambio.TasaDeCambio, cambio.Fecha);
             await RecargarAsync();
         }
-        private async Task  BorrarAsync(Cambio cambio) {
-            await CambioService.RemoveCambioAsync(cambio.Id);
+        
+        private async Task  BorrarAsync(int Id) {
+            await CambioService.RemoveCambioAsync(Id);
             await RecargarAsync();
         }
         private async Task RecargarAsync() 
@@ -60,7 +62,7 @@ namespace DiviCalc.ViewModel {
             Cambios.Clear();
             await Task.Delay(1000);
             var _cambios = await CambioService.GetCambiosListAsync();
-            foreach (Cambio cambio in _cambios) {
+            foreach (Cambio cambio in _cambios.OrderByDescending(c => c.Fecha)) {
                 Cambios.Add(cambio);
             }
             IsBusy = false;
