@@ -11,16 +11,16 @@
             <Label Text="Calculadora en Divisas" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
         <Label Text="Indique monto en divisas:" FontSize="Title" Padding="30,10,30,10"/>
-        <Entry x:Name="entryDivisas" Placeholder="Indique monto a convertir (20)" ></Entry>
-        <Button Text="Convertir"  HeightRequest="70" Clicked="Button_Clicked"></Button>
+        <Entry x:Name="entryDivisas" Placeholder="Monto a convertir (XXXX.XX)" HorizontalTextAlignment="Center" FontSize="32"></Entry>
+        <Button Text="Convertir"  HeightRequest="70" Clicked="Button_Clicked" WidthRequest="70" BorderWidth="5" BorderColor="White" CornerRadius="15" FontSize="24" BackgroundColor="AliceBlue"></Button>
         <Label></Label>
         <Label x:Name="lblResulBs"   Padding="30,0,30,0" FontSize="36" FontAttributes="Bold"/>
-        <Label></Label>
-        
-        <StackLayout Orientation="Horizontal" BackgroundColor="AliceBlue" Padding="0,10,0,10" HorizontalOptions="EndAndExpand">
-            <Label Text="Tasa de cambio:" FontSize="Medium" Padding="30,10,30,10"/>
+        <Button Text="Copiar"  HeightRequest="70" Clicked="Button_Clicked" WidthRequest="70" BorderWidth="5" BorderColor="White" CornerRadius="15" FontSize="24" BackgroundColor="AliceBlue"></Button>
+        <Label/>
+        <StackLayout Orientation="Horizontal" BackgroundColor="AliceBlue" Padding="0,5,0,10" HorizontalOptions="EndAndExpand">
+            <Label Text="Referencia:" FontSize="Medium" Padding="15,10,15,10"/>
             <Label x:Name="lblCambio" TextColor="DeepSkyBlue" Text="{Binding TasaDeCambio}" FontSize="Medium" FontAttributes="Bold" Padding="30,10,30,10" ></Label>
-            <Button x:Name="Refresh" Command="{Binding ObtenerCambio}" Text="Refresh"></Button>
+            <Button x:Name="Refresh" Command="{Binding ObtenerCambio}" Text="Refresh" BackgroundColor="AliceBlue"></Button>
         </StackLayout>
     </StackLayout>
 
