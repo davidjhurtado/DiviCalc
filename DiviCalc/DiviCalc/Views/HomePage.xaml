@@ -15,7 +15,7 @@
         <Button Text="Convertir"  HeightRequest="70" Clicked="Button_Clicked" WidthRequest="70" BorderWidth="5" BorderColor="White" CornerRadius="15" FontSize="24" BackgroundColor="AliceBlue"></Button>
         <Label></Label>
         <Label x:Name="lblResulBs"   Padding="30,0,30,0" FontSize="36" FontAttributes="Bold"/>
-        <Button Text="Copiar"  HeightRequest="70" Clicked="Button_Clicked" WidthRequest="70" BorderWidth="5" BorderColor="White" CornerRadius="15" FontSize="24" BackgroundColor="AliceBlue"></Button>
+        <Button x:Name="btnCopiar" Text="Copiar"  HeightRequest="70"  WidthRequest="70" BorderWidth="5" BorderColor="White" CornerRadius="15" FontSize="24" BackgroundColor="AliceBlue" Clicked="btnCopiar_Clicked"></Button>
         <Label/>
         <StackLayout Orientation="Horizontal" BackgroundColor="AliceBlue" Padding="0,5,0,10" HorizontalOptions="EndAndExpand">
             <Label Text="Referencia:" FontSize="Medium" Padding="15,10,15,10"/>

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using DiviCalc.ViewModel;
+using Xamarin.Essentials;
+using System.Threading.Tasks;
 
 namespace DiviCalc.Views {
     public partial class HomePage : ContentPage {
@@ -20,6 +17,10 @@ namespace DiviCalc.Views {
 
         private void Button_Clicked(object sender, EventArgs e) {
             lblResulBs.Text = (Convert.ToDecimal(entryDivisas.Text) * Convert.ToDecimal(lblCambio.Text) * 1).ToString();
+        }
+
+        private void  btnCopiar_Clicked(object sender, EventArgs e) {
+            Task.Run(async () => await Clipboard.SetTextAsync(lblResulBs.Text));
         }
     }
 }
