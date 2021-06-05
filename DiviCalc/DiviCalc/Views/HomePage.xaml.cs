@@ -16,11 +16,11 @@ namespace DiviCalc.Views {
         }
 
         private void Button_Clicked(object sender, EventArgs e) {
-            lblResulBs.Text = (Convert.ToDecimal(entryDivisas.Text) * Convert.ToDecimal(lblCambio.Text) * 1).ToString();
+            lblResulBs.Text = string.Format("{0:n}", Math.Round( Convert.ToDecimal(entryDivisas.Text) * Convert.ToDecimal(lblCambio.Text), 2));
         }
 
         private void  btnCopiar_Clicked(object sender, EventArgs e) {
-            Task.Run(async () => await Clipboard.SetTextAsync(lblResulBs.Text));
+            Task.Run(async () => await Clipboard.SetTextAsync(decimal.Parse( lblResulBs.Text).ToString()));
         }
     }
 }
